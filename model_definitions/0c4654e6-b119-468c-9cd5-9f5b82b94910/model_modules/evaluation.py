@@ -10,9 +10,7 @@ import matplotlib.pyplot as plt
 import itertools
 import json
 
-
 configure.val_install_location = os.environ.get("AOA_VAL_DB", "VAL")
-
 
 def evaluate(data_conf, model_conf, **kwargs):
     create_context(host=os.environ["AOA_CONN_HOST"],
@@ -27,18 +25,18 @@ def evaluate(data_conf, model_conf, **kwargs):
     
     score = valib.LogRegPredict(data=ads, 
                                 model=model, 
-                                index_columns="cust_id",
-                                estimate_column="pred_cc_acct_ind",
+                                index_columns="CustomerID",
+                                estimate_column="PredictChurnValue",
                                 prob_column="Probability",
-                                accumulate="cc_acct_ind")
+                                accumulate="ChurnValue")
     
     results = score.result
-    results = results.assign(pred_cc_acct_ind=results.pred_cc_acct_ind.cast(type_=INTEGER))
+    results = results.assign(PredictChurnVaLue=results.PredictChurnValue.cast(type_=INTEGER))
     
-    predictions = results.select(["cc_acct_ind", "pred_cc_acct_ind"]).to_pandas()
+    predictions = results.select(["ChurnValue", "PredictChurnValue"]).to_pandas()
     
-    y_pred = predictions[["pred_cc_acct_ind"]]
-    y_test = predictions[["cc_acct_ind"]]
+    y_pred = predictions[["PredictChurnValue"]]
+    y_test = predictions[["ChurnValue"]]
     
     evaluation = {
         'Accuracy': '{:.2f}'.format(metrics.accuracy_score(y_test, y_pred)),
@@ -73,11 +71,11 @@ def evaluate(data_conf, model_conf, **kwargs):
 
     print("Calculating dataset statistics")
     
+    # the number of rows output from VAL is different to the number of input rows.. nulls???
+    # temporary workaround - join back to features and filter features without predictions???
     
-    # the number of rows output from VAL is different to the number of input rows.. nulls?
-    # temporary workaround - join back to features and filter features without predictions
-    results.to_sql(table_name="bank_predictions_tmp", if_exists='replace', temporary=True)
-    ads = DataFrame.from_query(f"SELECT F.* FROM {features_table} F JOIN bank_predictions_tmp P ON F.cust_id = P.cust_id")
+    results.to_sql(table_name="telco_predictions_tmp", if_exists='replace', temporary=True)
+    ads = DataFrame.from_query(f"SELECT F.* FROM {features_table} F JOIN telco_predictions_tmp P ON F.CustomerID = P.CustomerID")
     
     stats.record_evaluation_stats(ads, results)
     
