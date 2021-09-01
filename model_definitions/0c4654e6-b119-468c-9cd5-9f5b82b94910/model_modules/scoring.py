@@ -8,7 +8,6 @@ import os
 
 configure.val_install_location = os.environ.get("AOA_VAL_DB", "VAL")
 
-
 def score(data_conf, model_conf, **kwargs):
     create_context(host=os.environ["AOA_CONN_HOST"],
                    username=os.environ["AOA_CONN_USERNAME"],
@@ -16,23 +15,25 @@ def score(data_conf, model_conf, **kwargs):
                    database=data_conf["schema"] if "schema" in data_conf and data_conf["schema"] != "" else None)
 
     features_table = data_conf["features"]
+    
     predictions_table = data_conf["predictions"]
     
     features = DataFrame(features_table)
 
     # model_table prperty should be available via kwargs. 
     # Being tracked in https://github.com/ThinkBigAnalytics/AoaPythonClient/issues/153
+    
     model_table = "AOA_MODELS_{}".format(kwargs.get("model_version").split("-", 1)[0])
     model = DataFrame(model_table)
     
     score = valib.LogRegPredict(data=features, 
                                 model=model, 
-                                index_columns="cust_id",
-                                estimate_column="cc_acct_ind",
+                                index_columns="CustomerID",
+                                estimate_column="ChurnValue",
                                 prob_column="Probability")
     
     df = score.result
-    df = df.assign(cc_acct_ind=df.cc_acct_ind.cast(type_=INTEGER))
+    df = df.assign(ChurnValue=df.ChurnValue.cast(type_=INTEGER))
     
     df.to_sql(table_name=predictions_table, if_exists='replace')
    
@@ -42,7 +43,8 @@ def score(data_conf, model_conf, **kwargs):
     
     # the number of rows output from VAL is different to the number of input rows.. nulls?
     # temporary fix - join back to features and filter features without predictions
-    features = DataFrame.from_query(f"SELECT F.* FROM {features_table} F JOIN {predictions_table} P ON F.cust_id = P.cust_id")
+    
+    features = DataFrame.from_query(f"SELECT F.* FROM {features_table} F JOIN {predictions_table} P ON F.CustomerID = P.CustomerID")
 
     stats.record_scoring_stats(features, DataFrame(predictions_table))
     
