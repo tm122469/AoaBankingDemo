@@ -8,7 +8,6 @@ import os
 
 configure.val_install_location = os.environ.get("AOA_VAL_DB", "VAL")
 
-
 def train(data_conf, model_conf, **kwargs):
     hyperparams = model_conf["hyperParameters"]
 
@@ -23,24 +22,73 @@ def train(data_conf, model_conf, **kwargs):
 
     print("Starting training...")
     
+    feature_names = ['Gender',
+                     'SeniorCitizen',
+                     'Partner',
+                     'Dependents',
+                     'TenureMonths',
+                     'PhoneService',
+                     'PaperlessBilling',
+                     'MonthlyCharges',
+                     'TotalCharges',
+                     'CLTV',
+                     'Age',
+                     'Under30',
+                     'Married',
+                     'NumberOfDependents',
+                     'ReferredAFriend',
+                     'NumberOfReferrals',
+                     'AvgMonthlyLongDistanceCharges',
+                     'AvgMonthlyGBDownload',
+                     'DeviceProtectionPlan',
+                     'PremiumTechSupport',
+                     'StreamingMusic',
+                     'UnlimitedData',
+                     'TotalRefunds',
+                     'TotalExtraDataCharges',
+                     'TotalLongDistanceCharges',
+                     'TotalRevenue',
+                     'SatisfactionScore',
+                     'MultipleLines_No',
+                     'MultipleLines_Yes',
+                     'InternetService_DSL',
+                     'InternetService_FiberOptic',
+                     'OnlineSecurity_No',
+                     'OnlineSecurity_Yes',
+                     'OnlineBackup_No',
+                     'OnlineBackup_Yes',
+                     'DeviceProtection_No',
+                     'DeviceProtection_Yes',
+                     'TechSupport_No',
+                     'TechSupport_Yes',
+                     'StreamingTV_No',
+                     'StreamingTV_Yes',
+                     'StreamingMovies_No',
+                     'StreamingMovies_Yes',
+                     'Contract_OneYear',
+                     'Contract_TwoYear',
+                     'PaymentMethod_AutoBankTransfer',
+                     'PaymentMethod_AutoCreditCard',
+                     'PaymentMethod_ECheck',
+                     'InternetType_Cable',
+                     'InternetType_DSL',
+                     'InternetType_FiberOptic',
+                     'Offer_OfferA',
+                     'Offer_OfferB',
+                     'Offer_OfferC',
+                     'Offer_OfferD',
+                     'Offer_OfferE']
 
-    feature_names = ['income_bins', 'age_bins', 'tot_cust_years', 
-                'tot_children', 'female_ind', 'single_ind', 'married_ind','separated_ind',
-                'ca_resident_ind', 'ny_resident_ind', 'tx_resident_ind', 'il_resident_ind', 
-                'az_resident_ind', 'oh_resident_ind','sv_acct_ind',
-                'ck_avg_bal','sv_avg_bal','ck_avg_tran_amt','cc_avg_tran_amt',
-                'q1_trans_cnt','q2_trans_cnt','q3_trans_cnt','q4_trans_cnt']
-    target_name = "cc_acct_ind"
+    target_name = "ChurnValue"
 
     model = valib.LogReg(data=ads, 
-                           columns=feature_names, 
-                           response_column=target_name, 
-                           response_value=1,
-                           threshold_output='true',
-                           near_dep_report='true', 
-                           cond_ind_threshold=int(hyperparams["cond_ind_threshold"]),
-                           variance_prop_threshold=float(hyperparams["variance_prop_threshold"]))
-
+                         columns=feature_names, 
+                         response_column=target_name, 
+                         response_value=1,
+                         threshold_output='true',
+                         near_dep_report='true', 
+                         cond_ind_threshold=int(hyperparams["cond_ind_threshold"]),
+                         variance_prop_threshold=float(hyperparams["variance_prop_threshold"]))
    
     model.model.to_sql(table_name=kwargs.get("model_table"), if_exists="replace")
     model.statistical_measures.to_sql(table_name = kwargs.get("model_table") + "_rpt", if_exists = 'replace')
@@ -53,9 +101,8 @@ def train(data_conf, model_conf, **kwargs):
                        features=feature_names,
                        predictors=[target_name],
                         # bug in VAL frequency won't allow us to specify more categorical columns
-                        # tracked in https://github.com/ThinkBigAnalytics/AoaPythonClient/issues/155
-                       categorical=[target_name, 'female_ind', 'single_ind', 'married_ind',
-                                    'separated_ind','ca_resident_ind', 'ny_resident_ind', 'tx_resident_ind'],
+                        # tracked in https://github.com/ThinkBigAnalytics/AoaPythonClient/issues/155 - Ask Anton about using "All Categorical" option?
+                       categorical=[target_name, 'Gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService', 'PaperlessBilling', 'Under30', 'Married', 'ReferredAFriend'],
                        category_labels={target_name: {0: "false", 1: "true"}})
     
     print("Finished calculating dataset statistics")
