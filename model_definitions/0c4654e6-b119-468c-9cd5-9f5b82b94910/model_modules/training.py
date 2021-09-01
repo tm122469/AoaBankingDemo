@@ -22,10 +22,7 @@ def train(data_conf, model_conf, **kwargs):
 
     print("Starting training...")
     
-    feature_names = ['Gender',
-                     'SeniorCitizen',
-                     'Partner',
-                     'Dependents',
+    feature_names = ['Gender', 'SeniorCitizen', 'Partner', 'Dependents',
                      'TenureMonths',
                      'PhoneService',
                      'PaperlessBilling',
