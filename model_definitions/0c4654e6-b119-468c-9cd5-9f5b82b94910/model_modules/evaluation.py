@@ -31,7 +31,7 @@ def evaluate(data_conf, model_conf, **kwargs):
                                 accumulate="ChurnValue")
     
     results = score.result
-    results = results.assign(PredictChurnVaLue=results.PredictChurnValue.cast(type_=INTEGER))
+    results = results.assign(PredictChurnValue=results.PredictChurnValue.cast(type_=INTEGER))
     
     predictions = results.select(["ChurnValue", "PredictChurnValue"]).to_pandas()
     
