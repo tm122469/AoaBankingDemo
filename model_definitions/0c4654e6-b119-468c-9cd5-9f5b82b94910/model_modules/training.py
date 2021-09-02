@@ -99,7 +99,7 @@ def train(data_conf, model_conf, **kwargs):
                        predictors=[target_name],
                         # bug in VAL frequency won't allow us to specify more categorical columns
                         # tracked in https://github.com/ThinkBigAnalytics/AoaPythonClient/issues/155 - Ask Anton about using "All Categorical" option?
-                       categorical=[target_name, 'Gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService', 'PaperlessBilling', 'Under30', 'Married', 'ReferredAFriend'],
+                       categorical=[target_name, feature_names],
                        category_labels={target_name: {0: "false", 1: "true"}})
     
     print("Finished calculating dataset statistics")
