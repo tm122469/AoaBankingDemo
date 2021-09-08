@@ -12,7 +12,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import sqlalchemy
 
-
 def evaluate(data_conf, model_conf, **kwargs):
     model_version = kwargs["model_version"]
     model_id = kwargs["model_id"]
@@ -28,30 +27,45 @@ def evaluate(data_conf, model_conf, **kwargs):
         model_bytes = f.read()
 
     # we don't want to insert this into the models that can be used yet so add to temporary table and use there
+    # With BYOM, a new table is required....
+    
     cursor.execute("""
-    CREATE VOLATILE TABLE ivsm_models_tmp(
-        model_version VARCHAR(255),
-        model_id VARCHAR(255),
-        model BLOB(2097088000)
-    ) ON COMMIT PRESERVE ROWS;
+    CREATE SET TABLE AOA_Demo.pmml_models (
+                     model_id VARCHAR (30),
+                     model BLOB
+    ) PRIMARY INDEX (model_id);
     """)
-    cursor.execute(f"INSERT INTO ivsm_models_tmp(model_version, model_id, model) "
-                   "values(?,?,?)",
-                   (model_version, model_id, model_bytes))
+    
+    # cursor.execute(f"INSERT INTO ivsm_models_tmp(model_version, model_id, model) "
+    #               "values(?,?,?)",
+    #               (model_version, model_id, model_bytes))
+    
+    cursor.execute("delete from AOA_Demo.pmml_models where model_id = 'telco_churn_byom'")
+    modelname_param = "telco_churn_byom"
+    insert_model = f"insert into AOA_Demo.pmml_models (model_id, model) values(?,?);"
+    cursor.execute(insert_model, modelname_param, model_bytes)
+
+    # scores_df = pd.read_sql(f"""
+    # SELECT cust_id, y_test, CAST(y_pred AS INT) FROM (
+    #    SELECT cust_id, cc_acct_ind as y_test, CAST(score_result AS JSON).JSONExtractValue('$.predicted_cc_acct_ind') as y_pred FROM IVSM.IVSM_SCORE(
+    #                ON (SELECT * FROM {data_conf["features"]}) AS DataTable
+    #                ON (SELECT model_id, model FROM ivsm_models_tmp WHERE model_version = '{model_version}') AS ModelTable DIMENSION
+    #                USING
+    #                    ModelID('{model_id}')
+    #                    ColumnsToPreserve('cust_id', 'cc_acct_ind')
+    #                    ModelType('PMML')
+    #            ) sc
+    #   ) T WHERE T.y_pred=0 OR T.y_pred=1;
+    # """, conn)
 
     scores_df = pd.read_sql(f"""
-    SELECT cust_id, y_test, CAST(y_pred AS INT) FROM (
-        SELECT cust_id, cc_acct_ind as y_test, CAST(score_result AS JSON).JSONExtractValue('$.predicted_cc_acct_ind') as y_pred FROM IVSM.IVSM_SCORE(
-                    ON (SELECT * FROM {data_conf["features"]}) AS DataTable
-                    ON (SELECT model_id, model FROM ivsm_models_tmp WHERE model_version = '{model_version}') AS ModelTable DIMENSION
-                    USING
-                        ModelID('{model_id}')
-                        ColumnsToPreserve('cust_id', 'cc_acct_ind')
-                        ModelType('PMML')
-                ) sc
-        ) T WHERE T.y_pred=0 OR T.y_pred=1;
-    """, conn)
-
+                SELECT CustomerID, y_test, CAST(y_pred as INT) FROM (
+                   SELECT CustomerID, ChurnValue as y_test, CAST(json_report AS JSON).JSONExtractValue('$.predicted_ChurnValue') as y_pred FROM mldb.PMMLPredict(
+                          ON (SELECT * FROM {data_conf["features"]}) AS DataTable
+                          ON (SELECT * FROM AOA_Demo.pmml_models WHERE model_id = 'telco_churn_byom') AS ModelTable DIMENSION
+                          USING Accumulate('*') ) ) sc;
+                """, conn)
+    
     y_pred = scores_df[["y_pred"]]
     y_test = scores_df[["y_test"]]
 
@@ -84,12 +98,12 @@ def evaluate(data_conf, model_conf, **kwargs):
     fig.savefig('artifacts/output/confusion_matrix', dpi=500)
     plt.clf()
 
-    predictions_table = "bank_predictions_tmp"
-    predictions_df = scores_df[["cust_id", "y_pred"]].rename({'y_pred': 'cc_acct_ind'}, axis=1)
+    predictions_table = "telco_churn_scores"
+    predictions_df = scores_df[["CustomerID", "y_pred"]].rename({'y_pred': 'ChurnValue'}, axis=1)
     copy_to_sql(df=predictions_df, table_name=predictions_table, index=False, if_exists="replace", temporary=True)
 
     # the number of rows output from VAL is different to the number of input rows.. nulls?
     # temporary workaround - join back to features and filter features without predictions
-    ads = DataFrame.from_query(f"SELECT F.* FROM {data_conf['features']} F JOIN bank_predictions_tmp P ON F.cust_id = P.cust_id")
+    ads = DataFrame.from_query(f"SELECT F.* FROM {data_conf['features']} F JOIN telco_churn_scores P ON F.cust_id = P.cust_id")
 
     stats.record_evaluation_stats(ads, DataFrame(predictions_table))
