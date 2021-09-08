@@ -10,6 +10,7 @@ import json
 import itertools
 import pandas as pd
 import matplotlib.pyplot as plt
+import sqlalchemy
 
 
 def evaluate(data_conf, model_conf, **kwargs):
