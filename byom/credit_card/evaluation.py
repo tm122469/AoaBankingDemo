@@ -27,14 +27,14 @@ def evaluate(data_conf, model_conf, **kwargs):
         model_bytes = f.read()
 
     # we don't want to insert this into the models that can be used yet so add to temporary table and use there
-    # With BYOM, a new table is required....
+    # With BYOM, a new table is required....but only the first time - can we ignore the error on subsequent runs?  Commenting out for now...
     
-    cursor.execute("""
-    CREATE SET TABLE AOA_Demo.pmml_models (
-                     model_id VARCHAR (30),
-                     model BLOB
-    ) PRIMARY INDEX (model_id);
-    """)
+    # cursor.execute("""
+    # CREATE SET TABLE AOA_Demo.pmml_models (
+    #                  model_id VARCHAR (30),
+    #                  model BLOB
+    # ) PRIMARY INDEX (model_id);
+    # """)
     
     # cursor.execute(f"INSERT INTO ivsm_models_tmp(model_version, model_id, model) "
     #               "values(?,?,?)",
@@ -42,8 +42,8 @@ def evaluate(data_conf, model_conf, **kwargs):
     
     cursor.execute("delete from AOA_Demo.pmml_models where model_id = 'telco_churn_byom'")
     modelname_param = "telco_churn_byom"
-    insert_model = f"insert into AOA_Demo.pmml_models (model_id, model) values(?,?);"
-    cursor.execute(insert_model, modelname_param, model_bytes)
+    cursor.execute(f"insert into AOA_Demo.pmml_models (model_id, model) VALUES (?,?)",
+                  (modelname_param, model_bytes))
 
     # scores_df = pd.read_sql(f"""
     # SELECT cust_id, y_test, CAST(y_pred AS INT) FROM (
