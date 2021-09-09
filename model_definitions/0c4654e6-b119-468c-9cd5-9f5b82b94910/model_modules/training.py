@@ -22,64 +22,28 @@ def train(data_conf, model_conf, **kwargs):
 
     print("Starting training...")
     
-    feature_names = ['Gender', 'SeniorCitizen', 'Partner', 'Dependents',
-                     'TenureMonths',
-                     'PhoneService',
-                     'PaperlessBilling',
-                     'MonthlyCharges',
-                     'TotalCharges',
-                     'CLTV',
-                     'Age',
-                     'Under30',
-                     'Married',
-                     'NumberOfDependents',
-                     'ReferredAFriend',
-                     'NumberOfReferrals',
-                     'AvgMonthlyLongDistanceCharges',
-                     'AvgMonthlyGBDownload',
-                     'DeviceProtectionPlan',
-                     'PremiumTechSupport',
-                     'StreamingMusic',
-                     'UnlimitedData',
-                     'TotalRefunds',
-                     'TotalExtraDataCharges',
-                     'TotalLongDistanceCharges',
-                     'TotalRevenue',
-                     'SatisfactionScore',
-                     'MultipleLines_No',
-                     'MultipleLines_Yes',
-                     'InternetService_DSL',
-                     'InternetService_FiberOptic',
-                     'OnlineSecurity_No',
-                     'OnlineSecurity_Yes',
-                     'OnlineBackup_No',
-                     'OnlineBackup_Yes',
-                     'DeviceProtection_No',
-                     'DeviceProtection_Yes',
-                     'TechSupport_No',
-                     'TechSupport_Yes',
-                     'StreamingTV_No',
-                     'StreamingTV_Yes',
-                     'StreamingMovies_No',
-                     'StreamingMovies_Yes',
-                     'Contract_OneYear',
-                     'Contract_TwoYear',
-                     'PaymentMethod_AutoBankTransfer',
-                     'PaymentMethod_AutoCreditCard',
-                     'PaymentMethod_ECheck',
-                     'InternetType_Cable',
-                     'InternetType_DSL',
-                     'InternetType_FiberOptic',
-                     'Offer_OfferA',
-                     'Offer_OfferB',
-                     'Offer_OfferC',
-                     'Offer_OfferD',
-                     'Offer_OfferE']
+    categorical_features = ['Gender', 'SeniorCitizen', 'Partner', 'Dependents', 
+                            'PhoneService', 'PaperlessBilling', 'Under30', 'Married',
+                            'ReferredAFriend', 'DeviceProtectionPlan', 'PremiumTechSupport', 'MultipleLines_No','MultipleLines_Yes',
+                            'StreamingMusic', 'UnlimitedData', 'InternetService_DSL', 'InternetService_FiberOptic', 'OnlineSecurity_No',
+                            'OnlineSecurity_Yes', 'OnlineBackup_No', 'OnlineBackup_Yes', 'DeviceProtection_No',
+                            'DeviceProtection_Yes', 'TechSupport_No', 'TechSupport_Yes', 'StreamingTV_No',
+                            'StreamingTV_Yes', 'StreamingMovies_No', 'StreamingMovies_Yes', 'Contract_OneYear',
+                            'Contract_TwoYear', 'PaymentMethod_AutoBankTransfer', 'PaymentMethod_AutoCreditCard',
+                            'PaymentMethod_ECheck', 'InternetType_Cable', 'InternetType_DSL', 'InternetType_FiberOptic',
+                            'Offer_OfferA', 'Offer_OfferB', 'Offer_OfferC', 'Offer_OfferD', 'Offer_OfferE']
+    
+    numerical_features = ['TenureMonths', 'MonthlyCharges', 'TotalCharges', 'CLTV', 'Age',
+                          'NumberOfDependents', 'NumberOfReferrals', 'AvgMonthlyLongDistanceCharges',
+                          'AvgMonthlyGBDownload','TotalRefunds', 'TotalExtraDataCharges', 'TotalLongDistanceCharges',
+                          'TotalRevenue', 'SatisfactionScore']
+    
+    features = categorical_features + numerical_features
 
     target_name = "ChurnValue"
 
     model = valib.LogReg(data=ads, 
-                         columns=feature_names, 
+                         columns=features, 
                          response_column=target_name, 
                          response_value=1,
                          threshold_output='true',
@@ -95,11 +59,9 @@ def train(data_conf, model_conf, **kwargs):
     print("Calculating dataset statistics")
     
     stats.record_training_stats(ads,
-                       features=feature_names,
+                       features=features,
                        predictors=[target_name],
-                        # bug in VAL frequency won't allow us to specify more categorical columns
-                        # tracked in https://github.com/ThinkBigAnalytics/AoaPythonClient/issues/155 - Ask Anton about using "All Categorical" option?
-                       categorical=[target_name, feature_names],
+                       categorical=[target_name] + categorical_features,
                        category_labels={target_name: {0: "false", 1: "true"}})
     
     print("Finished calculating dataset statistics")

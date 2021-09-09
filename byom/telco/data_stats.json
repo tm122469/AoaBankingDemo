@@ -1,0 +1,1454 @@
+{
+  "num_rows": 80000,
+  "features": {
+    "Gender": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 42503.0,
+          "1": 37497.0
+        }
+      }
+    },
+    "SeniorCitizen": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 56039.0,
+          "1": 23961.0
+        }
+      }
+    },
+    "Partner": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 55108.0,
+          "1": 24892.0
+        }
+      }
+    },
+    "Dependents": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 66676.0,
+          "1": 13324.0
+        }
+      }
+    },
+    "PhoneService": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 9834.0,
+          "1": 70166.0
+        }
+      }
+    },
+    "PaperlessBilling": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 38564.0,
+          "1": 41436.0
+        }
+      }
+    },
+    "Under30": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 69555.0,
+          "1": 10445.0
+        }
+      }
+    },
+    "Married": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 55983.0,
+          "1": 24017.0
+        }
+      }
+    },
+    "ReferredAFriend": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 53451.0,
+          "1": 26549.0
+        }
+      }
+    },
+    "DeviceProtectionPlan": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 60771.0,
+          "1": 19229.0
+        }
+      }
+    },
+    "PremiumTechSupport": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 66331.0,
+          "1": 13669.0
+        }
+      }
+    },
+    "MultipleLines_No": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 35499.0,
+          "1": 44501.0
+        }
+      }
+    },
+    "MultipleLines_Yes": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 55180.0,
+          "1": 24820.0
+        }
+      }
+    },
+    "StreamingMusic": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 63189.0,
+          "1": 16811.0
+        }
+      }
+    },
+    "UnlimitedData": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 22742.0,
+          "1": 57258.0
+        }
+      }
+    },
+    "InternetService_DSL": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 66143.0,
+          "1": 13857.0
+        }
+      }
+    },
+    "InternetService_FiberOptic": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 30871.0,
+          "1": 49129.0
+        }
+      }
+    },
+    "OnlineSecurity_No": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 35045.0,
+          "1": 44955.0
+        }
+      }
+    },
+    "OnlineSecurity_Yes": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 61903.0,
+          "1": 18097.0
+        }
+      }
+    },
+    "OnlineBackup_No": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 34880.0,
+          "1": 45120.0
+        }
+      }
+    },
+    "OnlineBackup_Yes": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 62311.0,
+          "1": 17689.0
+        }
+      }
+    },
+    "DeviceProtection_No": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 38824.0,
+          "1": 41176.0
+        }
+      }
+    },
+    "DeviceProtection_Yes": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 58552.0,
+          "1": 21448.0
+        }
+      }
+    },
+    "TechSupport_No": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 32190.0,
+          "1": 47810.0
+        }
+      }
+    },
+    "TechSupport_Yes": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 64926.0,
+          "1": 15074.0
+        }
+      }
+    },
+    "StreamingTV_No": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 30875.0,
+          "1": 49125.0
+        }
+      }
+    },
+    "StreamingTV_Yes": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 66255.0,
+          "1": 13745.0
+        }
+      }
+    },
+    "StreamingMovies_No": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 34934.0,
+          "1": 45066.0
+        }
+      }
+    },
+    "StreamingMovies_Yes": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 61699.0,
+          "1": 18301.0
+        }
+      }
+    },
+    "Contract_OneYear": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 69676.0,
+          "1": 10324.0
+        }
+      }
+    },
+    "Contract_TwoYear": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 68997.0,
+          "1": 11003.0
+        }
+      }
+    },
+    "PaymentMethod_AutoBankTransfer": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 69289.0,
+          "1": 10711.0
+        }
+      }
+    },
+    "PaymentMethod_AutoCreditCard": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 70260.0,
+          "1": 9740.0
+        }
+      }
+    },
+    "PaymentMethod_ECheck": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 47323.0,
+          "1": 32677.0
+        }
+      }
+    },
+    "InternetType_Cable": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 72811.0,
+          "1": 7189.0
+        }
+      }
+    },
+    "InternetType_DSL": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 62945.0,
+          "1": 17055.0
+        }
+      }
+    },
+    "InternetType_FiberOptic": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 41573.0,
+          "1": 38427.0
+        }
+      }
+    },
+    "Offer_OfferA": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 76501.0,
+          "1": 3499.0
+        }
+      }
+    },
+    "Offer_OfferB": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 76309.0,
+          "1": 3691.0
+        }
+      }
+    },
+    "Offer_OfferC": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 77715.0,
+          "1": 2285.0
+        }
+      }
+    },
+    "Offer_OfferD": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 76351.0,
+          "1": 3649.0
+        }
+      }
+    },
+    "Offer_OfferE": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "0",
+        "1": "1"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 70707.0,
+          "1": 9293.0
+        }
+      }
+    },
+    "TenureMonths": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 73.0,
+        "mean": 23.8757625,
+        "std": 24.478590697660554,
+        "skew": 0.6421215140684126,
+        "kurt": -1.1756902393123314,
+        "ste": 0.08654488738102858,
+        "cv": 102.52485422260568,
+        "var": 599.2014025435938,
+        "sum": 1910061.0,
+        "uss": 93540275.0,
+        "css": 47936112.2034875,
+        "histogram": {
+          "edges": [
+            0.0,
+            7.3,
+            14.6,
+            21.9,
+            29.2,
+            36.5,
+            43.8,
+            51.1,
+            58.4,
+            65.7,
+            73.0
+          ],
+          "values": [
+            34057.0,
+            7900.0,
+            4923.0,
+            4284.0,
+            3396.0,
+            3198.0,
+            5975.0,
+            2190.0,
+            9039.0,
+            5038.0
+          ]
+        }
+      }
+    },
+    "MonthlyCharges": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 17.6,
+        "max": 129.06,
+        "mean": 68.13544887499994,
+        "std": 30.266152912717853,
+        "skew": -0.08783175192025278,
+        "kurt": -1.2275796851086191,
+        "ste": 0.10700700982505885,
+        "cv": 44.42056728538414,
+        "var": 916.0400121360194,
+        "sum": 5450835.909999995,
+        "uss": 444678352.4426999,
+        "css": 73283200.97088155,
+        "histogram": {
+          "edges": [
+            17.6,
+            28.75,
+            39.89,
+            51.04,
+            62.18,
+            73.33,
+            84.48,
+            95.62,
+            106.77,
+            117.91,
+            129.06
+          ],
+          "values": [
+            17247.0,
+            830.0,
+            4267.0,
+            14592.0,
+            7382.0,
+            6289.0,
+            9501.0,
+            10939.0,
+            7776.0,
+            1177.0
+          ]
+        }
+      }
+    },
+    "TotalCharges": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.01,
+        "max": 7795.5,
+        "mean": 1172.9256526249967,
+        "std": 1636.471854996639,
+        "skew": 1.640534875139376,
+        "kurt": 1.5658539988357434,
+        "ste": 5.78580172944526,
+        "cv": 139.52051021599112,
+        "var": 2678040.132196141,
+        "sum": 93834052.20999974,
+        "uss": 324303577502.5532,
+        "css": 214243210575.69125,
+        "histogram": {
+          "edges": [
+            0.01,
+            779.56,
+            1559.11,
+            2338.66,
+            3118.21,
+            3897.76,
+            4677.3,
+            5456.85,
+            6236.4,
+            7015.95,
+            7795.5
+          ],
+          "values": [
+            51528.0,
+            8019.0,
+            5248.0,
+            4068.0,
+            2619.0,
+            2163.0,
+            3782.0,
+            2120.0,
+            413.0,
+            40.0
+          ]
+        }
+      }
+    },
+    "CLTV": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 1782.0,
+        "max": 6763.0,
+        "mean": 4199.1474625,
+        "std": 1240.5913893249908,
+        "skew": -0.09446262107841662,
+        "kurt": -1.286937664991707,
+        "ste": 4.3861529203667065,
+        "cv": 29.543887191482284,
+        "var": 1539066.995267311,
+        "sum": 335931797.0,
+        "uss": 1533752512567.0,
+        "css": 123125359621.38489,
+        "histogram": {
+          "edges": [
+            1782.0,
+            2280.1,
+            2778.2,
+            3276.3,
+            3774.4,
+            4272.5,
+            4770.6,
+            5268.700000000001,
+            5766.8,
+            6264.900000000001,
+            6763.0
+          ],
+          "values": [
+            3314.0,
+            12217.0,
+            7753.0,
+            8711.0,
+            7112.0,
+            10237.0,
+            9537.0,
+            11975.0,
+            8388.0,
+            756.0
+          ]
+        }
+      }
+    },
+    "Age": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 10.0,
+        "max": 79.0,
+        "mean": 36.2010125,
+        "std": 14.803045513503083,
+        "skew": 0.4240673447722964,
+        "kurt": -0.5200341413535008,
+        "ste": 0.05233666932405564,
+        "cv": 40.89124720890909,
+        "var": 219.13015647484374,
+        "sum": 2896081.0,
+        "uss": 122371477.0,
+        "css": 17530412.5179875,
+        "histogram": {
+          "edges": [
+            10.0,
+            16.9,
+            23.8,
+            30.700000000000003,
+            37.6,
+            44.5,
+            51.400000000000006,
+            58.300000000000004,
+            65.2,
+            72.1,
+            79.0
+          ],
+          "values": [
+            6541.0,
+            13514.0,
+            10056.0,
+            14761.0,
+            10898.0,
+            13376.0,
+            4229.0,
+            1882.0,
+            4542.0,
+            201.0
+          ]
+        }
+      }
+    },
+    "NumberOfDependents": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 9.0,
+        "mean": 0.3759875,
+        "std": 0.9590990041928674,
+        "skew": 3.52049492726937,
+        "kurt": 17.505374009940216,
+        "ste": 0.0033909270484702076,
+        "cv": 255.08800271095913,
+        "var": 0.91987089984375,
+        "sum": 30079.0,
+        "uss": 84899.0,
+        "css": 73589.6719875,
+        "histogram": {
+          "edges": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0
+          ],
+          "values": [
+            65537.0,
+            5455.0,
+            4318.0,
+            4162.0,
+            74.0,
+            88.0,
+            77.0,
+            99.0,
+            190.0
+          ]
+        }
+      }
+    },
+    "NumberOfReferrals": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 11.0,
+        "mean": 1.2498875,
+        "std": 2.5722011463615653,
+        "skew": 2.094369202348462,
+        "kurt": 3.122234184765288,
+        "ste": 0.00909410436584037,
+        "cv": 205.79461322411538,
+        "var": 6.61621873734375,
+        "sum": 99991.0,
+        "uss": 654275.0,
+        "css": 529297.4989875,
+        "histogram": {
+          "edges": [
+            0.0,
+            1.1,
+            2.2,
+            3.3000000000000003,
+            4.4,
+            5.5,
+            6.6000000000000005,
+            7.700000000000001,
+            8.8,
+            9.9,
+            11.0
+          ],
+          "values": [
+            64262.0,
+            1853.0,
+            1669.0,
+            1609.0,
+            2372.0,
+            1192.0,
+            1450.0,
+            3173.0,
+            1104.0,
+            1316.0
+          ]
+        }
+      }
+    },
+    "AvgMonthlyLongDistanceCharges": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 51.43,
+        "mean": 18.61016062500004,
+        "std": 14.37280241021039,
+        "skew": 0.29746975999318276,
+        "kurt": -1.1810381002080224,
+        "ste": 0.050815530244570604,
+        "cv": 77.23094227839508,
+        "var": 206.5774491229496,
+        "sum": 1488812.8500000034,
+        "uss": 44233242.208900124,
+        "css": 16526195.929835968,
+        "histogram": {
+          "edges": [
+            0.0,
+            5.14,
+            10.29,
+            15.43,
+            20.57,
+            25.71,
+            30.86,
+            36.0,
+            41.14,
+            46.29,
+            51.43
+          ],
+          "values": [
+            20255.0,
+            9996.0,
+            7482.0,
+            6417.0,
+            8123.0,
+            7884.0,
+            8124.0,
+            5623.0,
+            4775.0,
+            1321.0
+          ]
+        }
+      }
+    },
+    "AvgMonthlyGBDownload": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 84.0,
+        "mean": 15.5203375,
+        "std": 16.42037488567462,
+        "skew": 1.353276161651784,
+        "kurt": 1.4289740871982761,
+        "ste": 0.058054792156429016,
+        "cv": 105.79908385158905,
+        "var": 269.62871138609376,
+        "sum": 1241627.0,
+        "uss": 40840767.0,
+        "css": 21570296.9108875,
+        "histogram": {
+          "edges": [
+            0.0,
+            8.4,
+            16.8,
+            25.200000000000003,
+            33.6,
+            42.0,
+            50.400000000000006,
+            58.800000000000004,
+            67.2,
+            75.60000000000001,
+            84.0
+          ],
+          "values": [
+            33733.0,
+            17433.0,
+            15433.0,
+            2069.0,
+            2552.0,
+            5434.0,
+            800.0,
+            1673.0,
+            790.0,
+            83.0
+          ]
+        }
+      }
+    },
+    "TotalRefunds": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 48.9,
+        "mean": 1.2684689999999994,
+        "std": 5.658599907312674,
+        "skew": 5.0825588373823125,
+        "kurt": 26.78004927621062,
+        "ste": 0.020006171832411802,
+        "cv": 446.09682280865167,
+        "var": 32.019752911039,
+        "sum": 101477.51999999996,
+        "uss": 2690301.3211999997,
+        "css": 2561580.23288312,
+        "histogram": {
+          "edges": [
+            0.0,
+            4.89,
+            9.78,
+            14.67,
+            19.56,
+            24.45,
+            29.34,
+            34.23,
+            39.12,
+            44.01,
+            48.9
+          ],
+          "values": [
+            75390.0,
+            636.0,
+            910.0,
+            820.0,
+            522.0,
+            440.0,
+            482.0,
+            474.0,
+            254.0,
+            72.0
+          ]
+        }
+      }
+    },
+    "TotalExtraDataCharges": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 173.0,
+        "mean": 4.3822375,
+        "std": 19.938629767203004,
+        "skew": 5.088115943729834,
+        "kurt": 26.166637644860092,
+        "ste": 0.07049370157978599,
+        "cv": 454.98742975940957,
+        "var": 397.5489569935938,
+        "sum": 350579.0,
+        "uss": 33340237.0,
+        "css": 31803916.5594875,
+        "histogram": {
+          "edges": [
+            0.0,
+            17.3,
+            34.6,
+            51.900000000000006,
+            69.2,
+            86.5,
+            103.80000000000001,
+            121.10000000000001,
+            138.4,
+            155.70000000000002,
+            173.0
+          ],
+          "values": [
+            75604.0,
+            791.0,
+            651.0,
+            633.0,
+            408.0,
+            454.0,
+            700.0,
+            576.0,
+            165.0,
+            18.0
+          ]
+        }
+      }
+    },
+    "TotalLongDistanceCharges": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.0,
+        "max": 3957.83,
+        "mean": 749.9068117500002,
+        "std": 815.9968330456193,
+        "skew": 1.2395026345127922,
+        "kurt": 0.7417620975653706,
+        "ste": 2.8849844703665224,
+        "cv": 108.81309787564001,
+        "var": 665850.8315404803,
+        "sum": 59992544.94000002,
+        "uss": 98256884627.96245,
+        "css": 53268066523.23843,
+        "histogram": {
+          "edges": [
+            0.0,
+            395.78,
+            791.57,
+            1187.35,
+            1583.13,
+            1978.91,
+            2374.7,
+            2770.48,
+            3166.26,
+            3562.05,
+            3957.83
+          ],
+          "values": [
+            38774.0,
+            11968.0,
+            9784.0,
+            6577.0,
+            4425.0,
+            3210.0,
+            2712.0,
+            1887.0,
+            596.0,
+            67.0
+          ]
+        }
+      }
+    },
+    "TotalRevenue": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 0.03,
+        "max": 12505.85,
+        "mean": 3036.6981417500065,
+        "std": 2923.2641229156943,
+        "skew": 0.8161328586023643,
+        "kurt": -0.5443040488548447,
+        "ste": 10.335299422565164,
+        "cv": 96.26456060038481,
+        "var": 8545473.132326065,
+        "sum": 242935851.3400005,
+        "uss": 1421360698914.7205,
+        "css": 683637850586.0851,
+        "histogram": {
+          "edges": [
+            0.03,
+            1250.61,
+            2501.19,
+            3751.78,
+            5002.36,
+            6252.94,
+            7503.52,
+            8754.1,
+            10004.69,
+            11255.27,
+            12505.85
+          ],
+          "values": [
+            33068.0,
+            9967.0,
+            8866.0,
+            8087.0,
+            5286.0,
+            5441.0,
+            5334.0,
+            3101.0,
+            800.0,
+            50.0
+          ]
+        }
+      }
+    },
+    "SatisfactionScore": {
+      "type": "continuous",
+      "group": "default",
+      "statistics": {
+        "cnt": 80000.0,
+        "min": 1.0,
+        "max": 5.0,
+        "mean": 3.2094875,
+        "std": 1.3520549128433172,
+        "skew": -0.4575672417918253,
+        "kurt": -0.9646845265478297,
+        "ste": 0.0047802359870404805,
+        "cv": 42.12681659745729,
+        "var": 1.82805248734375,
+        "sum": 256759.0,
+        "uss": 970309.0,
+        "css": 146244.19898749999,
+        "histogram": {
+          "edges": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "values": [
+            16099.0,
+            4533.0,
+            19546.0,
+            39822.0
+          ]
+        }
+      }
+    }
+  },
+  "predictors": {
+    "ChurnValue": {
+      "type": "categorical",
+      "group": "default",
+      "category_dictionary": {
+        "0": "0",
+        "1": "1"
+      },
+      "category_labels": {
+        "0": "false",
+        "1": "true"
+      },
+      "ordinal": false,
+      "statistics": {
+        "frequency": {
+          "0": 44556.0,
+          "1": 35444.0
+        }
+      }
+    }
+  }
+}

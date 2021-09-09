@@ -27,14 +27,14 @@ def evaluate(data_conf, model_conf, **kwargs):
         model_bytes = f.read()
 
     # we don't want to insert this into the models that can be used yet so add to temporary table and use there
-    # With BYOM, a new table is required....but only the first time - can we ignore the error on subsequent runs?  Commenting out for now...
+    # With BYOM, a new table is required....
     
-    # cursor.execute("""
-    # CREATE SET TABLE AOA_Demo.pmml_models (
-    #                  model_id VARCHAR (30),
-    #                  model BLOB
-    # ) PRIMARY INDEX (model_id);
-    # """)
+    #cursor.execute("""
+    #CREATE SET TABLE AOA_Demo.pmml_models (
+    #                 model_id VARCHAR (30),
+    #                 model BLOB
+    #) PRIMARY INDEX (model_id);
+    #""")
     
     # cursor.execute(f"INSERT INTO ivsm_models_tmp(model_version, model_id, model) "
     #               "values(?,?,?)",
@@ -59,11 +59,14 @@ def evaluate(data_conf, model_conf, **kwargs):
     # """, conn)
 
     scores_df = pd.read_sql(f"""
-                SELECT CustomerID, y_test, CAST(y_pred as INT) FROM (
-                   SELECT CustomerID, ChurnValue as y_test, CAST(json_report AS JSON).JSONExtractValue('$.predicted_ChurnValue') as y_pred FROM mldb.PMMLPredict(
-                          ON (SELECT * FROM {data_conf["features"]}) AS DataTable
-                          ON (SELECT * FROM AOA_Demo.pmml_models WHERE model_id = 'telco_churn_byom') AS ModelTable DIMENSION
-                          USING Accumulate('*') ) ) sc;
+                SELECT CustomerID, ChurnValue as y_test, CAST(CAST(score_result AS JSON).JSONExtractValue('$.predicted_ChurnValue') as INT) as y_pred FROM IVSM.IVSM_SCORE(
+                  ON (SELECT * FROM {data_conf["features"]}) AS DataTable
+                  ON (SELECT * FROM AOA_Demo.pmml_models WHERE model_id = 'telco_churn_byom') AS ModelTable DIMENSION
+                  USING 
+                    ModelID('telco_churn_byom')
+                    ColumnsToPreserve('CustomerID', 'ChurnValue')
+                    ModelType('PMML')
+                    ) sc;
                 """, conn)
     
     y_pred = scores_df[["y_pred"]]
@@ -104,6 +107,6 @@ def evaluate(data_conf, model_conf, **kwargs):
 
     # the number of rows output from VAL is different to the number of input rows.. nulls?
     # temporary workaround - join back to features and filter features without predictions
-    ads = DataFrame.from_query(f"SELECT F.* FROM {data_conf['features']} F JOIN telco_churn_scores P ON F.cust_id = P.cust_id")
+    ads = DataFrame.from_query(f"SELECT F.* FROM {data_conf['features']} F JOIN telco_churn_scores P ON F.CustomerID = P.CustomerID")
 
     stats.record_evaluation_stats(ads, DataFrame(predictions_table))
