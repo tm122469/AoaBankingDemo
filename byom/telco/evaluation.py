@@ -26,37 +26,12 @@ def evaluate(data_conf, model_conf, **kwargs):
     with open("artifacts/input/model.pmml", "rb") as f:
         model_bytes = f.read()
 
-    # we don't want to insert this into the models that can be used yet so add to temporary table and use there
-    # With BYOM, a new table is required....
-    
-    #cursor.execute("""
-    #CREATE SET TABLE AOA_Demo.pmml_models (
-    #                 model_id VARCHAR (30),
-    #                 model BLOB
-    #) PRIMARY INDEX (model_id);
-    #""")
-    
-    # cursor.execute(f"INSERT INTO ivsm_models_tmp(model_version, model_id, model) "
-    #               "values(?,?,?)",
-    #               (model_version, model_id, model_bytes))
     
     cursor.execute("delete from AOA_Demo.pmml_models where model_id = 'telco_churn_byom'")
     modelname_param = "telco_churn_byom"
     cursor.execute(f"insert into AOA_Demo.pmml_models (model_id, model) VALUES (?,?)",
                   (modelname_param, model_bytes))
 
-    # scores_df = pd.read_sql(f"""
-    # SELECT cust_id, y_test, CAST(y_pred AS INT) FROM (
-    #    SELECT cust_id, cc_acct_ind as y_test, CAST(score_result AS JSON).JSONExtractValue('$.predicted_cc_acct_ind') as y_pred FROM IVSM.IVSM_SCORE(
-    #                ON (SELECT * FROM {data_conf["features"]}) AS DataTable
-    #                ON (SELECT model_id, model FROM ivsm_models_tmp WHERE model_version = '{model_version}') AS ModelTable DIMENSION
-    #                USING
-    #                    ModelID('{model_id}')
-    #                    ColumnsToPreserve('cust_id', 'cc_acct_ind')
-    #                    ModelType('PMML')
-    #            ) sc
-    #   ) T WHERE T.y_pred=0 OR T.y_pred=1;
-    # """, conn)
 
     scores_df = pd.read_sql(f"""
                 SELECT CustomerID, ChurnValue as y_test, CAST(CAST(score_result AS JSON).JSONExtractValue('$.predicted_ChurnValue') as INT) as y_pred FROM IVSM.IVSM_SCORE(
